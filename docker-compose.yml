@@ -1,0 +1,13 @@
+version: "3.6"
+
+services:
+  react-client:
+    container_name: react-client
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    stdin_open: true
