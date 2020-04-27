@@ -1,0 +1,16 @@
+FROM node:12.16.2-alpine as builder
+
+WORKDIR /app
+
+COPY . .
+
+ENV BASE_API_URL=http://mern-server:5000
+
+RUN yarn
+RUN yarn build
+
+FROM nginx:1.18-alpine
+
+WORKDIR /usr/share/nginx
+
+COPY --from=builder /app/build ./html

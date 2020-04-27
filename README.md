@@ -84,3 +84,10 @@ $ yarn start
 # Docker
 $ docker-compose up
 ```
+
+### Production With Docker
+
+```
+$ docker build -f ./docker/Dockerfile.prod -t ${USER_NAME}/mern-client:${IMAGE_TAG} .
+$ docker push ${USER_NAME}/mern-client:${IMAGE_TAG}
+```
