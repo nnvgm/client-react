@@ -5,7 +5,7 @@ function Modals({ onAddNewUser }) {
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState({
     name: '',
-    age: '',
+    phone: '',
   });
 
   const toggle = () => setModal(!modal);
@@ -18,17 +18,17 @@ function Modals({ onAddNewUser }) {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, age } = form;
+    const { name, phone } = form;
     const newUser = {
       name,
-      age,
+      phone,
     };
 
     onAddNewUser(newUser);
 
     setForm({
       user: '',
-      age: '',
+      phone: '',
     });
 
     toggle();
@@ -50,9 +50,9 @@ function Modals({ onAddNewUser }) {
               onChange={(e) => onChange(e)}
             />
             <input
-              name="age"
-              placeholder="Age"
-              value={form.age}
+              name="phone"
+              placeholder="Phone"
+              value={form.phone}
               onChange={(e) => onChange(e)}
             />
           </form>

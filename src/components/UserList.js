@@ -8,17 +8,19 @@ function UserList({ userList }) {
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Age</th>
+          <th>Phone</th>
         </tr>
       </thead>
       <tbody>
-        {userList.map((user, index) => (
-          <tr key={index}>
-            <th scope="row">{index}</th>
-            <td>{user.name}</td>
-            <td>{user.age}</td>
-          </tr>
-        ))}
+        {userList !== []
+          ? userList.map((user, index) => (
+              <tr key={index}>
+                <th scope="row">{index}</th>
+                <td>{user.name}</td>
+                <td>{user.phone}</td>
+              </tr>
+            ))
+          : null}
       </tbody>
     </Table>
   );

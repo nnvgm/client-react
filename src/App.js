@@ -1,14 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Components
 import UserList from './components/UserList';
 import Modals from './components/Modals';
+// utils
+import axios from './utils/axios';
 
 function App() {
-  const [datas, setDatas] = useState([{ id: 1, name: 'Jane', age: 30 }]);
+  const [datas, setDatas] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    const getDatas = async () => {
+      const { data } = await axios.get('/api/v1/users');
 
-  const onAddNewUser = (user) => {
-    setDatas([...datas, user]);
+      if (mounted && data.success) {
+        const { users } = data.data;
+        setDatas(users);
+      }
+    };
+
+    getDatas();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const onAddNewUser = async (newUser) => {
+    const { data } = await axios.post('/api/v1/users', newUser);
+    if (data.success) {
+      const { user } = data.data;
+      setDatas([...datas, user]);
+    }
   };
 
   return (
