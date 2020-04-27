@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+
+// Components
+import UserList from './components/UserList';
+import Modals from './components/Modals';
 
 function App() {
+  const [datas, setDatas] = useState([{ id: 1, name: 'Jane', age: 30 }]);
+
+  const onAddNewUser = (user) => {
+    setDatas([...datas, user]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2 className="mb-2 text-center">Manager Users - MERN DEMO</h2>
+      <Modals onAddNewUser={onAddNewUser} />
+      <UserList userList={datas} />
     </div>
   );
 }
